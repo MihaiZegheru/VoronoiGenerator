@@ -28,8 +28,6 @@ typedef struct {
     int x, y;
 } Vec2;
 
-#define PALETTE_COUNT (sizeof(palette) / sizeof(palette[0]))
-
 static Color image[HEIGHT][WIDTH];
 static Vec2 seeds[SEEDS_COUNT];
 
@@ -152,7 +150,6 @@ void RenderVoronoi()
         }
     }
 }
-
 
 int main(void) 
 {
