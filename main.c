@@ -32,6 +32,12 @@ static Color image[HEIGHT][WIDTH];
 static Vec2 seeds[SEEDS_COUNT];
 
 
+/**
+ * @brief Fill the image with a specified color
+ * 
+ * @param color 
+ * @return * Fill 
+ */
 void FillImage(Color color) 
 {
     for (size_t y = 0; y < HEIGHT; ++y) {
@@ -41,6 +47,12 @@ void FillImage(Color color)
     }
 }
 
+/**
+ * @brief Save image at specified path
+ * 
+ * @param filePath 
+ * @return * Save 
+ */
 void SaveImageAsPPM(const char *filePath) 
 {
     FILE *file = fopen(filePath, "wb");
@@ -71,14 +83,29 @@ void SaveImageAsPPM(const char *filePath)
     assert(err == 0);
 }
 
-int SquareDistance(Vec2 a, Vec2 b) 
+/**
+ * @brief Get the square of the distance between two points
+ * 
+ * @param a 
+ * @param b 
+ * @return * Get 
+ */
+int SquareDistance(Vec2 pointA, Vec2 pointB) 
 {
-    int dx = a.x - b.x;
-    int dy = a.y - b.y;
+    int dx = pointA.x - pointB.x;
+    int dy = pointA.y - pointB.y;
 
     return dx * dx + dy * dy;
 }
 
+/**
+ * @brief Fill a circle with a specified radius at the specified origin with a specified color
+ * 
+ * @param origin 
+ * @param radius 
+ * @param color 
+ * @return * Fill 
+ */
 void FillCircle(Vec2 origin, int radius, Color color) 
 {
     Vec2 beginCorner = {origin.x - radius, origin.y - radius};
@@ -101,6 +128,11 @@ void FillCircle(Vec2 origin, int radius, Color color)
     }
 }
 
+/**
+ * @brief Generate random seeds for Voronoi
+ * 
+ * @return * Generate 
+ */
 void GenerateRandomSeeds() 
 {
     for (size_t i = 0; i < SEEDS_COUNT; ++i) {
@@ -109,6 +141,11 @@ void GenerateRandomSeeds()
     }
 }
 
+/**
+ * @brief Render the seed markers in the image
+ * 
+ * @return * Render 
+ */
 void  RenderSeedMarkers() 
 {
     for (size_t i = 0; i < SEEDS_COUNT; ++i) {
@@ -116,6 +153,12 @@ void  RenderSeedMarkers()
     }
 }
 
+/**
+ * @brief Generate a color based on the position of a specified point
+ * 
+ * @param point 
+ * @return * Generate 
+ */
 Color SeedToColor(Vec2 point) 
 {
     assert(point.x >= 0);
@@ -129,6 +172,11 @@ Color SeedToColor(Vec2 point)
     return ((lf << 16) ^ rg);
 }
 
+/**
+ * @brief Generate the Voronoi algorithm and render it
+ * 
+ * @return * Generate 
+ */
 void RenderVoronoi()
 {
     for (int y = 0; y < HEIGHT; ++y) {
