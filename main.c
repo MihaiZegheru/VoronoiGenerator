@@ -84,18 +84,33 @@ void SaveImageAsPPM(const char *filePath)
 }
 
 /**
- * @brief Get the square of the distance between two points
+ * @brief Get the square of the euclidean distance between two points
  * 
  * @param a 
  * @param b 
  * @return * Get 
  */
-int SquareDistance(Vec2 pointA, Vec2 pointB) 
+int EuclideanDistance(Vec2 pointA, Vec2 pointB) 
 {
     int dx = pointA.x - pointB.x;
     int dy = pointA.y - pointB.y;
 
     return dx * dx + dy * dy;
+}
+
+/**
+ * @brief Get the manhattan distance between two points
+ * 
+ * @param pointA 
+ * @param pointB 
+ * @return int 
+ */
+int ManhattanDistance(Vec2 pointA, Vec2 pointB) 
+{
+    int dx = abs(pointA.x - pointB.x);
+    int dy = abs(pointA.y - pointB.y);
+
+    return dx + dy;
 }
 
 /**
